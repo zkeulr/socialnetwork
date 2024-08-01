@@ -1,4 +1,4 @@
-from src import collect, visualize, analyze
+from src import collect, cluster, network
 import argparse
 from dotenv import load_dotenv
 import os
@@ -24,5 +24,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     collect.collect(args.password, args.username)
-    visualize.visualize()
-    analyze.analyze()
+    network.network()
+    cluster.cluster()

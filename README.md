@@ -8,7 +8,9 @@ python main.py --username USERNAME --password PASSWORD
 
 Generates a dynamic visualization of Instagram connections, like so.
 
-![Instagram network](vars/visualization.png)
+![Network](vars/network.png)
+![Clusters](vars/cluster.png)
+
 
 ## Dependencies
 

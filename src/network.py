@@ -3,7 +3,7 @@ import networkx as nx
 import plotly.graph_objects as go
 
 
-def visualize():
+def network():
     data = load_data()
 
     G = nx.Graph()
@@ -96,8 +96,8 @@ def visualize():
         ),
     )
 
-    fig.write_html("vars/visualization.html")
-    fig.write_image("vars/visualization.png", width=1920, height=1080, scale=2)
+    fig.write_html("vars/network.html")
+    fig.write_image("vars/network.png", width=1920, height=1080, scale=2)
     fig.show()
 
 
@@ -110,4 +110,4 @@ def load_data(filename="vars/connections.json"):
 
 
 if __name__ == "__main__":
-    visualize()
+    network()
