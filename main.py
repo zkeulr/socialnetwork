@@ -11,6 +11,7 @@ if __name__ == "__main__":
     password = os.getenv("PASSWORD")
     seed = os.getenv("SEED")
     k = os.getenv("K")
+    no_scrape = os.getenv("NO_SCRAPE")
 
     if not seed:
         seed = 42
@@ -33,7 +34,7 @@ if __name__ == "__main__":
         "--k", type=int, default=k, help="k value for spring_layout"
     )
     parser.add_argument(
-        "--no_scrape", type=bool, default=False, help="Do not scrape Instagram followers"
+        "--no_scrape", type=bool, default=no_scrape, help="Do not scrape Instagram followers"
     )
 
     args = parser.parse_args()

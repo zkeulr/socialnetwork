@@ -43,7 +43,7 @@ src/.env
 
 ### Instagram blocking execution
 
-Open up [Instagram](instagram.com) in your browser. It helps immensely to
+Open up [Instagram](https://instagram.com) in your browser. It helps immensely to
 have an actual session going at the same time the script is executing.
 
 ### ```LoginRequiredException```
