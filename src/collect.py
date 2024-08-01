@@ -68,5 +68,9 @@ def save(dict, filename="vars/connections.json"):
     with open(filename, "w") as f:
         json.dump(dict, f, indent=4)
 
-if __name__=="__main__":
-    collect(input("Enter your Instagram username: "), input("Enter your Instagram password: "))
+
+if __name__ == "__main__":
+    collect(
+        input("Enter your Instagram username: "),
+        input("Enter your Instagram password: "),
+    )
