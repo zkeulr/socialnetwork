@@ -12,6 +12,11 @@ if __name__ == "__main__":
     seed = os.getenv("SEED")
     k = os.getenv("K")
 
+    if not seed:
+        seed = 42
+    if not k:
+        k = 42
+
     parser = argparse.ArgumentParser(
         description="Visualize Instagram follower network."
     )

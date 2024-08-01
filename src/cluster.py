@@ -21,7 +21,7 @@ def cluster(seed=0, k=100):
         for node in component:
             node_colors[node] = cluster_colors[i % len(cluster_colors)]
 
-    pos = nx.spring_layout(G, k=50, iterations=10000, seed=seed)
+    pos = nx.spring_layout(G, k=k, iterations=10000, seed=seed)
 
     edge_x = []
     edge_y = []
