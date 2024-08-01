@@ -67,7 +67,7 @@ def cluster(seed=0, k=100):
             margin=dict(b=40, l=40, r=40, t=80),
             annotations=[
                 dict(
-                    text="",
+                    text="Hover over a node to see username",
                     showarrow=False,
                     xref="paper",
                     yref="paper",
