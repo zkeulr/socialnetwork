@@ -15,7 +15,8 @@ def collect(username, password):
     followers = get_followers(profile)
 
     analyzed_data = load_analyzed_data().copy()
-    analyzed_data.popitem()
+    if analyzed_data:
+        analyzed_data.popitem()
     common = {}
 
     try:
@@ -31,11 +32,14 @@ def collect(username, password):
             subfollowers = get_followers(follower)
             common_followers = list(set(followers).intersection(set(subfollowers)))
             common[follower] = common_followers
+    except KeyboardInterrupt:
+        print("Program paused")
     except Exception as e:
         print(e)
         print(f"The last follower added was {username}")
-
-    save(common)
+    finally:
+        save(common)
+        print("Progress saved")
 
 
 def load_analyzed_data(filename="vars/connections.json"):
