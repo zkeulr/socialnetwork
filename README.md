@@ -6,7 +6,7 @@
 python main.py --username USERNAME --password PASSWORD
 ```
 
-<iframe src="vars/visualization.html" width="100%" height="500px"></iframe>
+![Instagram network](vars/visualization.png)
 
 ## Dependencies
 

@@ -69,6 +69,7 @@ def visualize():
                     )
 
     fig.write_html("vars/visualization.html")
+    fig.write_image("vars/visualization.png", width=1920, height=1080, scale=2)
     fig.show()
 
 
