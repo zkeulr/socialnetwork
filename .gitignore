@@ -1,5 +1,4 @@
 __pycache__/
 .env
 session_file
-connections.json
 cookies.txt

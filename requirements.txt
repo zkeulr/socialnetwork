@@ -1,4 +1,5 @@
 instaloader
 networkx
+pandas
 plotly
 python-dotenv

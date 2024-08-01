@@ -22,7 +22,7 @@ and [```vars/cluster.html```](vars/cluster.html) in your broswer.
 - [python-dotenv](https://github.com/theskumar/python-dotenv)
 
 ```console
-pip install instaloader networkx plotly python-dotenv 
+pip install instaloader networkx pandas plotly python-dotenv 
 ```
 
 ## Advanced Usage
