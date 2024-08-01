@@ -1,4 +1,6 @@
 __pycache__/
 .env
+*.png
+*.html
 session_file
 cookies.txt
