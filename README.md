@@ -11,6 +11,8 @@ Generates a dynamic visualization of Instagram connections, like so.
 ![Network](vars/network.png)
 ![Clusters](vars/cluster.png)
 
+To interact with your network, open [```vars/network.html```](vars/network.html)
+and [```vars/cluster.html```](vars/cluster.html) in your broswer.
 
 ## Dependencies
 
