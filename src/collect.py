@@ -31,11 +31,12 @@ def collect(username, password):
             follower = instaloader.Profile.from_username(L.context, username)
             subfollowers = get_followers(follower)
             common_followers = list(set(followers).intersection(set(subfollowers)))
-            common[follower] = common_followers
+            common[username] = common_followers
     except KeyboardInterrupt:
         print("Program paused")
+        print(f"The last follower added was {username}")
     except Exception as e:
-        print(e)
+        print(f"An error occurred: {e}")
         print(f"The last follower added was {username}")
     finally:
         save(common)

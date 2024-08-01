@@ -1,9 +1,7 @@
 from src import collect, visualize
 import argparse
 from dotenv import load_dotenv
-import logging
 import os
-
 
 if __name__ == "__main__":
 
@@ -11,8 +9,9 @@ if __name__ == "__main__":
 
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
+    cookies = None
 
-    parser = argparse.ArgumentParser(description="Visualize Instagram followers.")
+    parser = argparse.ArgumentParser(description="Visualize Instagram follower network.")
     parser.add_argument(
         "--username", type=str, default=username, help="Instagram username"
     )
@@ -22,5 +21,5 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    collect.collect(username, password)
+    collect.collect(args.password, args.username)
     visualize.visualize()
