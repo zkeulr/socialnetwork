@@ -39,7 +39,7 @@ def collect(username, password):
         print(f"The last follower added was {username}")
     finally:
         save(common)
-        print("Progress saved")
+        print("Saved")
 
 
 def load_analyzed_data(filename="vars/connections.json"):
