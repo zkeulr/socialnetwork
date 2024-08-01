@@ -6,15 +6,13 @@
 python main.py --username USERNAME --password PASSWORD
 ```
 
-Produces a network of Instagram connections, like so.
-
-![Network of Instagram followers](vars/visualization.png)
+<iframe src="vars/visualization.html" width="100%" height="500px"></iframe>
 
 ## Dependencies
 
 - instaloader
-- matplotlib
 - networkx
+- plotly
 - python-dotenv
 - requests
 
@@ -47,4 +45,3 @@ The issue is exactly what it says on the box. Log in to get a profile's follower
 ### ```BadCredentialsException```
 
 Wrong password or username.
-
