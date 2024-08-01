@@ -14,9 +14,10 @@ def collect(username, password):
     profile = instaloader.Profile.from_username(L.context, "zkeulr")
     followers = get_followers(profile)
 
-    analyzed_data = load_analyzed_data().copy()
-    if analyzed_data:
-        analyzed_data.popitem()
+    try:
+        analyzed_data = load_analyzed_data().copy()
+    except:
+        analyzed_data = {}
     common = {}
 
     try:

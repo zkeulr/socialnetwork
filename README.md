@@ -30,6 +30,11 @@ src/.env
 
 ## Troubleshooting
 
+### Instagram blocking execution
+
+Open up [Instagram](instagram.com) in your browser. It helps immensely to
+have an actual session going at the same time the script is executing.
+
 ### ```LoginRequiredException```
 
 The issue is exactly what it says on the box. Log in to get a profile's followers.
@@ -37,3 +42,4 @@ The issue is exactly what it says on the box. Log in to get a profile's follower
 ### ```BadCredentialsException```
 
 Wrong password or username.
+
