@@ -26,5 +26,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt  # Ensure you have a requirements.txt file
 
-      - name: Run main.py
+      - name: Generate figures
         run: python main.py --no_scrape True
+
+      - name: Commit and push figures
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'actions@github.com'
+          git add vars/network.png
+          git add vars/network.png
+          git add vars/cluster.png
+          git add vars/cluster.html
+          git commit -m "Add generated cluster.png"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
