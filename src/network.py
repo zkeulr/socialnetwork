@@ -11,7 +11,7 @@ def network():
         for follower in followers:
             G.add_edge(user, follower)
 
-    pos = nx.spring_layout(G, k=800, iterations=100000)
+    pos = nx.spring_layout(G, k=800, iterations=100000, seed=0)
 
     edge_x = []
     edge_y = []

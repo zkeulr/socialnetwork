@@ -21,7 +21,7 @@ def cluster():
         for node in component:
             node_colors[node] = cluster_colors[i % len(cluster_colors)]
 
-    pos = nx.spring_layout(G, k=1000, iterations=100000)
+    pos = nx.spring_layout(G, k=1000, iterations=100000, seed=0)
 
     edge_x = []
     edge_y = []
@@ -67,6 +67,7 @@ def cluster():
             margin=dict(b=40, l=40, r=40, t=80),
             annotations=[
                 dict(
+                    text="Click on a box to assign a label",
                     showarrow=False,
                     xref="paper",
                     yref="paper",
