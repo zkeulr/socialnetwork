@@ -23,4 +23,5 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    collect(username, password)
+    collect.collect(username, password)
+    visualize.visualize()

@@ -14,16 +14,31 @@ def collect(username, password):
     profile = instaloader.Profile.from_username(L.context, "zkeulr")
     followers = get_followers(profile)
 
-    common = {}
-    for username in tqdm(
-        followers, desc="Find connected followers", total=len(followers)
-    ):
-        follower = instaloader.Profile.from_username(L.context, username)
-        subfollowers = get_followers(follower)
-        common_followers = set(followers).intersection(set(subfollowers))
-        common[follower] = common_followers
+    common = load_analyzed_data().copy()
+    try:
+        for username in tqdm(
+            followers, desc="Find connected followers", total=len(followers)
+        ):
+            if username in common:
+                continue
+
+            follower = instaloader.Profile.from_username(L.context, username)
+            subfollowers = get_followers(follower)
+            common_followers = list(set(followers).intersection(set(subfollowers)))
+            common[follower] = common_followers
+    except Exception as e:
+        print(e)
+        print(f"The last follower added was {username}")
 
     save(common)
+
+
+def load_analyzed_data(filename="vars/connections.json"):
+    try:
+        with open(filename) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
 
 def login(L, username, password):
