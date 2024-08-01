@@ -5,7 +5,7 @@ import networkx as nx
 import plotly.graph_objs as go
 
 
-def cluster():
+def cluster(seed=0, k=100):
     data = load_data()
 
     G = nx.Graph()
@@ -21,7 +21,7 @@ def cluster():
         for node in component:
             node_colors[node] = cluster_colors[i % len(cluster_colors)]
 
-    pos = nx.spring_layout(G, k=1000, iterations=100000, seed=0)
+    pos = nx.spring_layout(G, k=50, iterations=10000, seed=seed)
 
     edge_x = []
     edge_y = []
@@ -102,7 +102,7 @@ def cluster():
             line=dict(color=cluster_colors[i % len(cluster_colors)], width=2),
         )
 
-    pio.write_html(fig, file="vars/cluster.html", auto_open=True)
+    pio.write_html(fig, file="vars/cluster.html", auto_open=False)
     pio.write_image(fig, file="vars/cluster.png", width=1920, height=1080, scale=2)
     pio.show(fig)
 

@@ -3,7 +3,7 @@
 ## TL;DR
 
 ```console
-python main.py --username USERNAME --password PASSWORD
+python main.py --username USERNAME --password PASSWORD --seed SEED
 ```
 
 Generates a dynamic visualization of Instagram connections, like so.
@@ -31,6 +31,8 @@ If you're getting tired of entering your username and password, create a ```.env
 src/.env
     USERNAME=your_username
     PASSWORD=your_password
+    SEED=arbitrary_integer
+    K=value_for_neat_graph
 ```
 
 ## Troubleshooting

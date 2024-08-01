@@ -3,7 +3,7 @@ import networkx as nx
 import plotly.graph_objects as go
 
 
-def network():
+def network(seed=0, k=100):
     data = load_data()
 
     G = nx.Graph()
@@ -11,7 +11,7 @@ def network():
         for follower in followers:
             G.add_edge(user, follower)
 
-    pos = nx.spring_layout(G, k=800, iterations=100000, seed=0)
+    pos = nx.spring_layout(G, k=50, iterations=10000, seed=seed)
 
     edge_x = []
     edge_y = []

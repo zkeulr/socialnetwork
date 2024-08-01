@@ -9,7 +9,8 @@ if __name__ == "__main__":
 
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
-    cookies = None
+    seed = os.getenv("SEED")
+    k = os.getenv("K")
 
     parser = argparse.ArgumentParser(
         description="Visualize Instagram follower network."
@@ -20,9 +21,15 @@ if __name__ == "__main__":
     parser.add_argument(
         "--password", type=str, default=password, help="Instagram password"
     )
+    parser.add_argument(
+        "--seed", type=int, default=seed, help="Seed for visualization"
+    )
+    parser.add_argument(
+        "--k", type=int, default=k, help="k value for spring_layout"
+    )
 
     args = parser.parse_args()
 
-    collect.collect(args.password, args.username)
-    network.network()
-    cluster.cluster()
+    # collect.collect(args.password, args.username)
+    network.network(args.seed, args.k)
+    cluster.cluster(args.seed, args.k)
