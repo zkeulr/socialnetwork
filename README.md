@@ -1,1 +1,6 @@
 # socialnetwork
+
+## Dependencies
+
+-tqdm
+-instaloader
