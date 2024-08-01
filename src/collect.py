@@ -20,7 +20,9 @@ def collect(username, password):
 
     try:
         for username in tqdm(
-            followers, desc="Find connected followers", total=len(followers) - len(analyzed_data)
+            followers,
+            desc="Find connected followers",
+            total=len(followers) - len(analyzed_data),
         ):
             if username in analyzed_data:
                 continue
