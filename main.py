@@ -32,9 +32,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--k", type=int, default=k, help="k value for spring_layout"
     )
+    parser.add_argument(
+        "--no_scrape", type=bool, default=False, help="Do not scrape Instagram followers"
+    )
 
     args = parser.parse_args()
 
-    # collect.collect(args.password, args.username)
+    if not args.no_scrape:
+        collect.collect(args.password, args.username)
     network.network(args.seed, args.k)
     cluster.cluster(args.seed, args.k)
