@@ -1,6 +1,6 @@
 # socialnetwork
 
-## TL:DR
+## TL;DR
 
 ```console
 python main.py --username USERNAME --password PASSWORD
@@ -13,9 +13,9 @@ Generates a dynamic visualization of Instagram connections, like so.
 ## Dependencies
 
 - [instaloader](https://github.com/instaloader/instaloader)
-- networkx
-- plotly
-- python-dotenv
+- [networkx](https://github.com/networkx/networkx)
+- [plotly](https://github.com/plotly/plotly.py)
+- [python-dotenv](https://github.com/theskumar/python-dotenv)
 
 ```console
 pip install instaloader networkx plotly python-dotenv 
@@ -23,8 +23,7 @@ pip install instaloader networkx plotly python-dotenv
 
 ## Advanced Usage
 
-If you're getting tired of pasting your username and password
-every time, create a ```.env``` file in ```vars/```:
+If you're getting tired of entering your username and password, create a ```.env``` file in ```vars/```:
 
 ```console
 src/.env
