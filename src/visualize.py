@@ -11,7 +11,7 @@ def visualize():
         for follower in followers:
             G.add_edge(user, follower)
 
-    pos = nx.spring_layout(G, k=0.4, iterations=60)
+    pos = nx.spring_layout(G, k=105, iterations=10000)
 
     edge_x = []
     edge_y = []
