@@ -1,4 +1,3 @@
-from tqdm import tqdm
 import instaloader
 import json
 
@@ -21,13 +20,12 @@ def collect(username, password):
     common = {}
 
     try:
-        for username in tqdm(
-            followers,
-            desc="Find connected followers",
-            total=len(followers) - len(analyzed_data),
-        ):
+        i = 1
+        for username in followers:
             if username in analyzed_data:
                 continue
+            print(f"Analyzing {username}: {i}/{len(followers) - len(analyzed_data)}")
+            i += 1
 
             follower = instaloader.Profile.from_username(L.context, username)
             subfollowers = get_followers(follower)
@@ -69,3 +67,6 @@ def get_followers(profile):
 def save(dict, filename="vars/connections.json"):
     with open(filename, "w") as f:
         json.dump(dict, f, indent=4)
+
+if __name__=="__main__":
+    collect(input("Enter your Instagram username: "), input("Enter your Instagram password: "))

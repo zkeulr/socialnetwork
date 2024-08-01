@@ -6,12 +6,17 @@
 python main.py --username USERNAME --password PASSWORD
 ```
 
+Produces a network of Instagram connections, like so.
+
+![Network of Instagram followers](vars/visualization.png)
+
 ## Dependencies
 
 - instaloader
+- matplotlib
+- networkx
 - python-dotenv
 - requests
-- tqdm
 
 ```console
 pip install instaloader python-dotenv tqdm
