@@ -1,4 +1,4 @@
-from src import collect, visualize
+from src import collect, visualize, analyze
 import argparse
 from dotenv import load_dotenv
 import os
@@ -25,3 +25,4 @@ if __name__ == "__main__":
 
     collect.collect(args.password, args.username)
     visualize.visualize()
+    analyze.analyze()
