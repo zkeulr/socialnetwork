@@ -17,12 +17,14 @@ and [```vars/cluster.html```](vars/cluster.html) in your broswer.
 ## Dependencies
 
 - [instaloader](https://github.com/instaloader/instaloader)
+- [kaleido](https://github.com/plotly/Kaleido)
 - [networkx](https://github.com/networkx/networkx)
+- [pandas](https://github.com/pandas-dev/pandas)
 - [plotly](https://github.com/plotly/plotly.py)
 - [python-dotenv](https://github.com/theskumar/python-dotenv)
 
 ```console
-pip install instaloader networkx pandas plotly python-dotenv 
+pip install instaloader kaleido networkx pandas plotly python-dotenv 
 ```
 
 ## Advanced Usage
