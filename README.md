@@ -1,6 +1,17 @@
 # socialnetwork
 
+## TL:DR
+
+```console
+python main.py --username USERNAME --password PASSWORD
+```
+
 ## Dependencies
 
--tqdm
--instaloader
+- instaloader
+- python-dotenv
+- tqdm
+
+```console
+pip install instaloader python-dotenv tqdm
+```

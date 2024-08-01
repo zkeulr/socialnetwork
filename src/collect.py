@@ -1,24 +1,13 @@
-from dotenv import load_dotenv
 from tqdm import tqdm
 import instaloader
 import json
-import logging
-import os
-
-logging.getLogger("instaloader").setLevel(logging.WARNING)
 
 
-def main():
-
-    load_dotenv()
-
+def collect(username, password):
     L = instaloader.Instaloader()
 
-    username = os.getenv("USERNAME")
-    password = os.getenv("PASSWORD")
-
     try:
-        L.load_session_from_file(username=username, filename="session_file")
+        L.load_session_from_file(username=username, filename="vars/session_file")
     except:
         login(L, username, password)
 
@@ -26,7 +15,9 @@ def main():
     followers = get_followers(profile)
 
     common = {}
-    for username in tqdm(followers, desc="Connecting followers", total=len(followers)):
+    for username in tqdm(
+        followers, desc="Find connected followers", total=len(followers)
+    ):
         follower = instaloader.Profile.from_username(L.context, username)
         subfollowers = get_followers(follower)
         common_followers = set(followers).intersection(set(subfollowers))
@@ -42,17 +33,13 @@ def login(L, username, password):
         two_factor_code = input("Enter 2FA code sent to your device: ")
         L.two_factor_login(two_factor_code)
 
-    L.save_session_to_file(filename="session_file")
+    L.save_session_to_file(filename="vars/session_file")
 
 
 def get_followers(profile):
     return [follower.username for follower in profile.get_followers()]
 
 
-def save(dict, filename="connections.json"):
+def save(dict, filename="vars/connections.json"):
     with open(filename, "w") as f:
         json.dump(dict, f)
-
-
-if __name__ == "__main__":
-    main()
