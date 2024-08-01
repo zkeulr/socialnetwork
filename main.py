@@ -7,8 +7,8 @@ import os
 
 if __name__ == "__main__":
 
-    logging.getLogger("instaloader").setLevel(logging.WARNING)
-    load_dotenv()
+    logging.getLogger("instaloader").setLevel(logging.ERROR)
+    load_dotenv(dotenv_path="vars/.env")
 
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")

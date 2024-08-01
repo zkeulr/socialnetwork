@@ -14,12 +14,15 @@ def collect(username, password):
     profile = instaloader.Profile.from_username(L.context, "zkeulr")
     followers = get_followers(profile)
 
-    common = load_analyzed_data().copy()
+    analyzed_data = load_analyzed_data().copy()
+    analyzed_data.popitem()
+    common = {}
+
     try:
         for username in tqdm(
-            followers, desc="Find connected followers", total=len(followers)
+            followers, desc="Find connected followers", total=len(followers) - len(analyzed_data)
         ):
-            if username in common:
+            if username in analyzed_data:
                 continue
 
             follower = instaloader.Profile.from_username(L.context, username)
