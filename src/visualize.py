@@ -11,7 +11,7 @@ def visualize():
         for follower in followers:
             G.add_edge(user, follower)
 
-    pos = nx.spring_layout(G, k=105, iterations=10000)
+    pos = nx.spring_layout(G, k=800, iterations=100000)
 
     edge_x = []
     edge_y = []
@@ -24,31 +24,37 @@ def visualize():
     edge_trace = go.Scatter(
         x=edge_x,
         y=edge_y,
-        line=dict(width=0.5, color="#888"),
-        hoverinfo="none",
+        line=dict(width=0.3, color="#888"),
+        hoverinfo="none", 
         mode="lines",
     )
 
     node_x = []
     node_y = []
     node_customdata = []
+    hover_text = []
+    node_color = []
+
     for node in G.nodes():
         x, y = pos[node]
         node_x.append(x)
         node_y.append(y)
         node_customdata.append(f"https://www.instagram.com/{node}")
+        node_color.append(G.degree[node])
 
     node_trace = go.Scatter(
         x=node_x,
         y=node_y,
         mode="markers+text",
-        text=[node for node in G.nodes()],
+        text=[f'<a href="https://www.instagram.com/{node}" target="_blank">{node}</a>' for node in G.nodes()],
         customdata=node_customdata,
         hoverinfo="text",
+        hovertext=hover_text,
         marker=dict(
             showscale=True,
-            colorscale="YlGnBu",
+            colorscale="Viridis",
             size=10,
+            color=node_color,
             colorbar=dict(
                 thickness=15,
                 title="Node Connections",
@@ -76,8 +82,8 @@ def visualize():
                     y=0.002,
                 )
             ],
-            xaxis=dict(showgrid=False, zeroline=False),
-            yaxis=dict(showgrid=False, zeroline=False),
+            xaxis=dict(showgrid=False, zeroline=False, showticklabels=False, showline=False),
+            yaxis=dict(showgrid=False, zeroline=False, showticklabels=False, showline=False),
             plot_bgcolor="rgba(0,0,0,0)",
             paper_bgcolor="rgba(0,0,0,0)",
         ),

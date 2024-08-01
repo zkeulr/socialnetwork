@@ -6,18 +6,19 @@
 python main.py --username USERNAME --password PASSWORD
 ```
 
+Generates a dynamic visualization of Instagram connections, like so.
+
 ![Instagram network](vars/visualization.png)
 
 ## Dependencies
 
-- instaloader
+- [instaloader](https://github.com/instaloader/instaloader)
 - networkx
 - plotly
 - python-dotenv
-- requests
 
 ```console
-pip install instaloader python-dotenv tqdm
+pip install instaloader networkx plotly python-dotenv 
 ```
 
 ## Advanced Usage
