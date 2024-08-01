@@ -11,7 +11,9 @@ if __name__ == "__main__":
     password = os.getenv("PASSWORD")
     cookies = None
 
-    parser = argparse.ArgumentParser(description="Visualize Instagram follower network.")
+    parser = argparse.ArgumentParser(
+        description="Visualize Instagram follower network."
+    )
     parser.add_argument(
         "--username", type=str, default=username, help="Instagram username"
     )
