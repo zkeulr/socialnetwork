@@ -68,4 +68,4 @@ def get_followers(profile):
 
 def save(dict, filename="vars/connections.json"):
     with open(filename, "w") as f:
-        json.dump(dict, f)
+        json.dump(dict, f, indent=4)
