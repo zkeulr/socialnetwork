@@ -37,7 +37,7 @@ jobs:
           git add vars/network.png
           git add vars/cluster.png
           git add vars/cluster.html
-          git commit -m "Add generated cluster.png"
+          git commit -m "Add workflow generated figures"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
