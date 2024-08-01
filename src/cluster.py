@@ -67,7 +67,7 @@ def cluster():
             margin=dict(b=40, l=40, r=40, t=80),
             annotations=[
                 dict(
-                    text="Click on a box to assign a label",
+                    text="",
                     showarrow=False,
                     xref="paper",
                     yref="paper",
