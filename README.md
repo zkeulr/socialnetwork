@@ -32,7 +32,7 @@ pip install instaloader kaleido networkx pandas plotly python-dotenv
 If you're getting tired of entering your username and password, create a ```.env``` file in ```vars/```:
 
 ```console
-src/.env
+vars/.env
     USERNAME=your_username
     PASSWORD=your_password
     SEED=arbitrary_integer
