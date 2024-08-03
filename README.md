@@ -6,13 +6,13 @@
 python main.py --username USERNAME --password PASSWORD --seed SEED
 ```
 
-Generates a dynamic visualization of Instagram connections, like so.
+Generates a dynamic visualization of Instagram connections.
 
 ![Network](output/network.png)
 ![Clusters](output/cluster.png)
 
-To interact with your network, open [```vars/network.html```](output/network.html)
-and [```vars/cluster.html```](output/cluster.html) in your broswer.
+To interact with your network, open [```output/network.html```](output/network.html)
+and [```output/cluster.html```](output/cluster.html) in your broswer.
 
 ## Dependencies
 
