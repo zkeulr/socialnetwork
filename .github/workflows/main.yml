@@ -27,18 +27,23 @@ jobs:
           pip install -r requirements.txt
 
       - name: Generate figures
+        id: generate_figures
         run: |
           if [ ! -f output/cluster.html ] || [ ! -f output/cluster.png ] || [ ! -f output/network.html ] || [ ! -f output/network.png ]; then
             python main.py --no_scrape True
+            echo "::set-output name=figures_generated::true"
+          else
+            echo "::set-output name=figures_generated::false"
 
       - name: Commit and push figures
+        if: steps.generate_figures.outputs.figures_generated == 'true'
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
-          git add vars/network.png
-          git add vars/network.html
-          git add vars/cluster.png
-          git add vars/cluster.html
+          git add output/network.png
+          git add output/network.html
+          git add output/cluster.png
+          git add output/cluster.html
           git commit -m "Add workflow generated figures"
           git push origin main
         env:
