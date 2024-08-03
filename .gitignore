@@ -1,5 +1,4 @@
 __pycache__/
 .env
-*.png
-*.html
+history/
 session_file
