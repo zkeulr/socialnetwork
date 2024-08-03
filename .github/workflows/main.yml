@@ -28,6 +28,7 @@ jobs:
             echo "::set-output name=figures_generated::true"
           else
             echo "::set-output name=figures_generated::false"
+          fi
 
       - name: Commit and push figures
         if: steps.generate_figures.outputs.figures_generated == 'true'
