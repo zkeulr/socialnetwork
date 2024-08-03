@@ -1,11 +1,14 @@
 import instaloader
 from socialnetwork import utils
 
+
 def collect(username, password):
     L = instaloader.Instaloader()
 
     try:
-        L.load_session_from_file(username=username, filename="socialnetwork/session_file")
+        L.load_session_from_file(
+            username=username, filename="socialnetwork/session_file"
+        )
     except:
         login(L, username, password)
 

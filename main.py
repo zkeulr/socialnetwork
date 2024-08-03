@@ -27,14 +27,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--password", type=str, default=password, help="Instagram password"
     )
+    parser.add_argument("--seed", type=int, default=seed, help="Seed for visualization")
+    parser.add_argument("--k", type=int, default=k, help="k value for spring_layout")
     parser.add_argument(
-        "--seed", type=int, default=seed, help="Seed for visualization"
-    )
-    parser.add_argument(
-        "--k", type=int, default=k, help="k value for spring_layout"
-    )
-    parser.add_argument(
-        "--no_scrape", type=bool, default=no_scrape, help="Do not scrape Instagram followers"
+        "--no_scrape",
+        type=bool,
+        default=no_scrape,
+        help="Do not scrape Instagram followers",
     )
 
     args = parser.parse_args()
