@@ -6,7 +6,7 @@
 python main.py --username USERNAME --password PASSWORD --seed SEED
 ```
 
-Generates a dynamic visualization of Instagram connections.
+Generates a dynamic analysis of Instagram connections.
 
 ![Network](output/network.png)
 ![Clusters](output/cluster.png)

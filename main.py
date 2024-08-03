@@ -19,7 +19,7 @@ if __name__ == "__main__":
         k = 42
 
     parser = argparse.ArgumentParser(
-        description="Visualize Instagram follower network."
+        description="Analyze Instagram follower network."
     )
     parser.add_argument(
         "--username", type=str, default=username, help="Instagram username"
