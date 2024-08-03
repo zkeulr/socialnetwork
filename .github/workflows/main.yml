@@ -27,7 +27,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Generate figures
-        run: python main.py --no_scrape True
+        run: |
+          if [ ! -f output/cluster.html ] || [ ! -f output/cluster.png ] || [ ! -f output/network.html ] || [ ! -f output/network.png ]; then
+            python main.py --no_scrape True
 
       - name: Commit and push figures
         run: |
