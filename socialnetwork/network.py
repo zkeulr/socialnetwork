@@ -1,6 +1,9 @@
 import networkx as nx
 import plotly.graph_objects as go
-from socialnetwork import utils
+try:
+    from . import utils
+except ImportError:
+    import utils
 
 
 def network(seed=0, k=100):

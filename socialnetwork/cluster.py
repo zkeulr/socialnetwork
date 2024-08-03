@@ -1,8 +1,10 @@
 import plotly.express as px
 import networkx as nx
 import plotly.graph_objs as go
-from socialnetwork import utils
-
+try:
+    from . import utils
+except ImportError:
+    import utils
 
 def cluster(seed=0, k=100):
     data = utils.load_connections()

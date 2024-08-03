@@ -42,4 +42,5 @@ if __name__ == "__main__":
         collect.collect(args.password, args.username)
     network.network(args.seed, args.k)
     cluster.cluster(args.seed, args.k)
-    analyze.analyze()
+    analysis = analyze.analyze()
+    print(analysis)

@@ -1,6 +1,8 @@
 import instaloader
-from socialnetwork import utils
-
+try:
+    from . import utils
+except ImportError:
+    import utils
 
 def collect(username, password):
     L = instaloader.Instaloader()
