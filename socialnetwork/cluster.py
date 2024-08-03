@@ -1,15 +1,24 @@
-import json
+import plotly.express as px
 import networkx as nx
-import plotly.graph_objects as go
+import plotly.graph_objs as go
+from socialnetwork import utils
 
 
-def network(seed=0, k=100):
-    data = load_data()
+def cluster(seed=0, k=100):
+    data = utils.load_connections()
 
     G = nx.Graph()
     for user, followers in data.items():
         for follower in followers:
             G.add_edge(user, follower)
+
+    connected_components = list(nx.connected_components(G))
+
+    cluster_colors = px.colors.qualitative.Plotly
+    node_colors = {}
+    for i, component in enumerate(connected_components):
+        for node in component:
+            node_colors[node] = cluster_colors[i % len(cluster_colors)]
 
     pos = nx.spring_layout(G, k=k, iterations=10000, seed=seed)
 
@@ -24,60 +33,40 @@ def network(seed=0, k=100):
     edge_trace = go.Scatter(
         x=edge_x,
         y=edge_y,
-        line=dict(width=0.3, color="#888"),
+        line=dict(width=0.5, color="#888"),
         hoverinfo="none",
         mode="lines",
     )
 
     node_x = []
     node_y = []
-    node_customdata = []
     hover_text = []
-    node_color = []
-
     for node in G.nodes():
         x, y = pos[node]
         node_x.append(x)
         node_y.append(y)
-        node_color.append(G.degree[node])
+        hover_text.append(f"{node}")
 
     node_trace = go.Scatter(
         x=node_x,
         y=node_y,
-        mode="markers+text",
-        text=[
-            f'<a href="https://www.instagram.com/{node}" target="_blank">{node}</a>'
-            for node in G.nodes()
-        ],
-        customdata=node_customdata,
+        mode="markers",
         hoverinfo="text",
         hovertext=hover_text,
-        marker=dict(
-            showscale=True,
-            colorscale="Viridis",
-            size=10,
-            color=node_color,
-            colorbar=dict(
-                thickness=15,
-                title="Node Connections",
-                xanchor="left",
-                titleside="right",
-            ),
-        ),
         textfont=dict(size=10),
     )
 
     fig = go.Figure(
         data=[edge_trace, node_trace],
         layout=go.Layout(
-            title="Social Network",
+            title="Social Clusters",
             titlefont_size=32,
             showlegend=False,
             hovermode="closest",
             margin=dict(b=40, l=40, r=40, t=80),
             annotations=[
                 dict(
-                    text="Click on a node to visit profile",
+                    text="Hover over a node to see username",
                     showarrow=False,
                     xref="paper",
                     yref="paper",
@@ -96,18 +85,25 @@ def network(seed=0, k=100):
         ),
     )
 
-    fig.write_html("vars/network.html")
-    fig.write_image("vars/network.png", width=1920, height=1080, scale=2)
+    for i, component in enumerate(connected_components):
+        cluster_nodes = list(component)
+        cluster_x = [pos[node][0] for node in cluster_nodes]
+        cluster_y = [pos[node][1] for node in cluster_nodes]
+        min_x, max_x = min(cluster_x), max(cluster_x)
+        min_y, max_y = min(cluster_y), max(cluster_y)
+
+        fig.add_shape(
+            type="rect",
+            x0=min_x,
+            y0=min_y,
+            x1=max_x,
+            y1=max_y,
+            line=dict(color=cluster_colors[i % len(cluster_colors)], width=2),
+        )
+
+    utils.save(fig, "cluster")
     fig.show()
 
 
-def load_data(filename="vars/connections.json"):
-    try:
-        with open(filename) as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
-
-
 if __name__ == "__main__":
-    network()
+    cluster()

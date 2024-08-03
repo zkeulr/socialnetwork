@@ -8,11 +8,11 @@ python main.py --username USERNAME --password PASSWORD --seed SEED
 
 Generates a dynamic visualization of Instagram connections, like so.
 
-![Network](vars/network.png)
-![Clusters](vars/cluster.png)
+![Network](output/network.png)
+![Clusters](output/cluster.png)
 
-To interact with your network, open [```vars/network.html```](vars/network.html)
-and [```vars/cluster.html```](vars/cluster.html) in your broswer.
+To interact with your network, open [```vars/network.html```](output/network.html)
+and [```vars/cluster.html```](output/cluster.html) in your broswer.
 
 ## Dependencies
 
@@ -29,10 +29,10 @@ pip install instaloader kaleido networkx pandas plotly python-dotenv
 
 ## Advanced Usage
 
-If you're getting tired of entering your username and password, create a ```.env``` file in ```vars/```:
+If you're getting tired of entering your username and password, create a ```.env``` file.
 
 ```console
-vars/.env
+.env
     USERNAME=your_username
     PASSWORD=your_password
     SEED=arbitrary_integer

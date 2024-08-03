@@ -1,12 +1,11 @@
 import instaloader
-import json
-
+from socialnetwork import utils
 
 def collect(username, password):
     L = instaloader.Instaloader()
 
     try:
-        L.load_session_from_file(username=username, filename="vars/session_file")
+        L.load_session_from_file(username=username, filename="socialnetwork/session_file")
     except:
         login(L, username, password)
 
@@ -14,7 +13,7 @@ def collect(username, password):
     followers = get_followers(profile)
 
     try:
-        analyzed_data = load_analyzed_data().copy()
+        analyzed_data = utils.load_connections().copy()
     except:
         analyzed_data = {}
     common = {}
@@ -38,16 +37,8 @@ def collect(username, password):
         print(f"An error occurred: {e}")
         print(f"The last follower added was {username}")
     finally:
-        save(common)
+        utils.save_connections(common)
         print("Saved")
-
-
-def load_analyzed_data(filename="vars/connections.json"):
-    try:
-        with open(filename) as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
 
 
 def login(L, username, password):
@@ -62,11 +53,6 @@ def login(L, username, password):
 
 def get_followers(profile):
     return [follower.username for follower in profile.get_followers()]
-
-
-def save(dict, filename="vars/connections.json"):
-    with open(filename, "w") as f:
-        json.dump(dict, f, indent=4)
 
 
 if __name__ == "__main__":

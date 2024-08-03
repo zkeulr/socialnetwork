@@ -1,11 +1,11 @@
-from src import collect, cluster, network
+from socialnetwork import collect, cluster, network, analyze
 import argparse
 from dotenv import load_dotenv
 import os
 
 if __name__ == "__main__":
 
-    load_dotenv(dotenv_path="vars/.env")
+    load_dotenv()
 
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
@@ -43,3 +43,4 @@ if __name__ == "__main__":
         collect.collect(args.password, args.username)
     network.network(args.seed, args.k)
     cluster.cluster(args.seed, args.k)
+    analyze.analyze()
