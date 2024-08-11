@@ -11,9 +11,9 @@ if __name__ == "__main__":
     password = os.getenv("PASSWORD")
     seed = os.getenv("SEED")
     k = os.getenv("K")
-    no_scrape = utils.convert_bool(os.getenv("NO_SCRAPE"))
-    no_visualize = utils.convert_bool(os.getenv("NO_VISUALIZE"))
-    no_analyze = utils.convert_bool(os.getenv("NO_ANALYZE"))
+    no_scrape = utils.convert_bool(str(os.getenv("NO_SCRAPE")))
+    no_visualize = utils.convert_bool(str(os.getenv("NO_VISUALIZE")))
+    no_analyze = utils.convert_bool(str(os.getenv("NO_ANALYZE")))
 
     if not seed:
         seed = 42
