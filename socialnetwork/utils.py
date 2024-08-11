@@ -2,6 +2,9 @@ import json
 import os
 from datetime import datetime
 
+def convert_bool(string):
+        return string.lower() in {"1", "yes", "true", "y"}
+
 
 def save_connections(
     dict, data_directory="data/connections.json", history_directory="history/"

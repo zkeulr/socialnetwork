@@ -3,6 +3,7 @@ try:
 except ImportError:
     import utils
 
+
 def analyze():
     followers = utils.load_connections()
     total_followers = len(followers)

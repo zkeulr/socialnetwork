@@ -1,8 +1,10 @@
 import instaloader
+
 try:
     from . import utils
 except ImportError:
     import utils
+
 
 def collect(username, password):
     L = instaloader.Instaloader()
