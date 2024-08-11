@@ -28,6 +28,8 @@ def load_connections(filename="data/connections.json"):
 
 
 def save(fig, filename, output_directory="output/", history_directory="history/"):
+    f = open(os.path.join(output_directory, f"{filename}.html"), "w")
+    f.close()
     fig.write_html(os.path.join(output_directory, f"{filename}.html"))
     fig.write_image(
         os.path.join(output_directory, f"{filename}.png"),
