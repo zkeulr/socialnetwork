@@ -46,10 +46,6 @@ If you're getting tired of entering your username and password, create a ```.env
 Open up [Instagram](https://instagram.com) in your browser. It helps immensely to
 have an actual session going at the same time the script is executing.
 
-### ```LoginRequiredException```
-
-The issue is exactly what it says on the box. Log in to get a profile's followers.
-
 ### ```BadCredentialsException```
 
 Wrong password or username.
