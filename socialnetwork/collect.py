@@ -28,7 +28,7 @@ def collect(username, password):
     try:
         i = 1
         for username in followers:
-            if username in analyzed_data:
+            if username in analyzed_data.keys():
                 continue
             print(f"Analyzing {username}: {i}/{len(followers) - len(analyzed_data)}")
             i += 1
@@ -54,6 +54,9 @@ def login(L, username, password):
     except instaloader.exceptions.TwoFactorAuthRequiredException:
         two_factor_code = input("Enter 2FA code sent to your device: ")
         L.two_factor_login(two_factor_code)
+    except instaloader.exceptions.BadCredentialsException:
+        utils.collect_cookies()
+        L.login(username, password)
 
     L.save_session_to_file(filename="vars/session_file")
 

@@ -48,4 +48,6 @@ have an actual session going at the same time the script is executing.
 
 ### ```BadCredentialsException```
 
-Wrong password or username.
+Wrong password or username. Note that Instaloader will not work
+when you have a colon (:) in your password. Try running ```utils.collect_cookies()```
+to make a session file. 

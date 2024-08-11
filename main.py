@@ -22,10 +22,10 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Analyze Instagram follower network.")
     parser.add_argument(
-        "--username", type=str, default=username, help="Instagram username"
+        "--username", type=str, default=repr(username)[1:-1], help="Instagram username"
     )
     parser.add_argument(
-        "--password", type=str, default=password, help="Instagram password"
+        "--password", type=str, default=repr(password)[1:-1], help="Instagram password"
     )
     parser.add_argument("--seed", type=int, default=seed, help="Seed for visualization")
     parser.add_argument("--k", type=int, default=k, help="k value for spring_layout")
@@ -49,7 +49,6 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-
     print(args)
 
     if not args.no_scrape:

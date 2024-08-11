@@ -9,38 +9,6 @@ except ImportError:
 
 
 def network(seed=0, k=100):
-    '''
-    fig = go.Figure(
-        data=[edge_trace, node_trace],
-        layout=go.Layout(
-            title="Social Clusters",
-            titlefont_size=32,
-            showlegend=False,
-            hovermode="closest",
-            margin=dict(b=40, l=40, r=40, t=80),
-            annotations=[
-                dict(
-                    text="Hover over a node to see username",
-                    showarrow=False,
-                    xref="paper",
-                    yref="paper",
-                    x=0.005,
-                    y=0.002,
-                )
-            ],
-            xaxis=dict(
-                showgrid=False, zeroline=False, showticklabels=False, showline=False
-            ),
-            yaxis=dict(
-                showgrid=False, zeroline=False, showticklabels=False, showline=False
-            ),
-            plot_bgcolor="rgba(0,0,0,0)",
-            paper_bgcolor="rgba(0,0,0,0)",
-        ),
-    )
-
-    '''
-
     data = utils.load_connections()
 
     G = nx.Graph()
