@@ -1,0 +1,4 @@
+name: scrape
+
+on:
+  workflow_dispatch:
