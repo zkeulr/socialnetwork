@@ -16,9 +16,9 @@ if __name__ == "__main__":
     no_analyze = utils.convert_bool(str(os.getenv("NO_ANALYZE")))
 
     if not seed:
-        seed = 42
+        seed = 10
     if not k:
-        k = 42
+        k = 10
 
     parser = argparse.ArgumentParser(description="Analyze Instagram follower network.")
     parser.add_argument(

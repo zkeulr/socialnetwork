@@ -1,11 +1,15 @@
 import networkx as nx
 import plotly.express as px
 import plotly.graph_objects as go
+from scipy.spatial import ConvexHull
+import numpy as np
 
 try:
     from . import utils
 except ImportError:
     import utils
+
+text_size = 10
 
 
 def network(seed=0, k=100):
@@ -23,7 +27,29 @@ def network(seed=0, k=100):
         for node in component:
             node_colors[node] = cluster_colors[i % len(cluster_colors)]
 
-    pos = nx.spring_layout(G, k=k, iterations=10000, seed=seed)
+
+    pos = {}
+    offset = np.array([0.0, 0.0])
+    grid_size = int(np.ceil(np.sqrt(len(connected_components))))
+    spacing = 1.0
+
+    for idx, component in enumerate(connected_components):
+        subgraph = G.subgraph(component)
+        sub_pos = nx.spring_layout(subgraph, k=k, iterations=10000, seed=seed)
+        
+        min_x = min(pos[0] for pos in sub_pos.values())
+        min_y = min(pos[1] for pos in sub_pos.values())
+        max_x = max(pos[0] for pos in sub_pos.values())
+        max_y = max(pos[1] for pos in sub_pos.values())
+        
+        row = idx // grid_size
+        col = idx % grid_size
+        offset = np.array([col * (max_x - min_x + spacing), row * (max_y - min_y + spacing)], dtype=np.float64)
+        
+        for node in sub_pos:
+            sub_pos[node] += offset
+        
+        pos.update(sub_pos)
 
     edge_x = []
     edge_y = []
@@ -67,7 +93,7 @@ def network(seed=0, k=100):
         marker=dict(
             showscale=True,
             colorscale="Viridis",
-            size=10,
+            size=5,
             color=node_color,
             colorbar=dict(
                 thickness=15,
@@ -76,7 +102,7 @@ def network(seed=0, k=100):
                 titleside="right",
             ),
         ),
-        textfont=dict(size=10),
+        textfont=dict(size=text_size),
     )
 
     fig = go.Figure(
@@ -109,20 +135,26 @@ def network(seed=0, k=100):
     )
 
     for i, component in enumerate(connected_components):
-        cluster_nodes = list(component)
-        cluster_x = [pos[node][0] for node in cluster_nodes]
-        cluster_y = [pos[node][1] for node in cluster_nodes]
-        min_x, max_x = min(cluster_x), max(cluster_x)
-        min_y, max_y = min(cluster_y), max(cluster_y)
+        nodes = list(component)
+        points = np.array([pos[node] for node in nodes])
 
-        fig.add_shape(
-            type="rect",
-            x0=min_x,
-            y0=min_y,
-            x1=max_x,
-            y1=max_y,
-            line=dict(color=cluster_colors[i % len(cluster_colors)], width=2),
-        )
+        if len(points) > 2:
+            hull = ConvexHull(points)
+            hull_points = points[hull.vertices]
+            hull_points = np.append(hull_points, [hull_points[0]], axis=0)
+
+            fig.add_trace(
+                go.Scatter(
+                    x=hull_points[:, 0],
+                    y=hull_points[:, 1],
+                    fill="toself",
+                    fillcolor=cluster_colors[i % len(cluster_colors)],
+                    opacity=0.1,
+                    line=dict(color=cluster_colors[i % len(cluster_colors)]),
+                    hoverinfo="none",
+                    mode="lines",
+                )
+            )
 
     utils.save(fig, "network")
     fig.show()
