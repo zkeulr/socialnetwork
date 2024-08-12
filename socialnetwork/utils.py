@@ -62,22 +62,27 @@ def convert_bool(string):
 
 
 def save_connections(dict, data_directory="data/", history_directory="history/"):
-    with open(os.path.join(data_directory, "connections.json"), "a") as f:
-        json.dump(dict, f, indent=4)
+    filepath = os.path.join(data_directory, "connections.json")
+    dict.update(load_connections(filepath))
+    
+    write_json(filepath, dict)
 
     now = datetime.now()
     timestamp = now.strftime("%Y%m%d_%H%M%S")
     filepath = os.path.join(history_directory, f"connections_{timestamp}.json")
-    with open(filepath, "a") as f:
-        json.dump(dict, f, indent=4)
+    write_json(filepath, dict)
 
 
-def load_connections(filename="data/connections.json"):
-    try:
-        with open(filename) as f:
-            return json.load(f)
-    except FileNotFoundError:
+def write_json(file_path, data):
+    with open(file_path, 'w') as file:
+        json.dump(data, file, indent=4)
+
+
+def load_connections(filepath="data/connections.json"):
+    if not os.path.exists(filepath):
         return {}
+    with open(filepath, 'r') as file:
+        return json.load(file)
 
 
 def save(fig, filename, output_directory="output/", history_directory="history/"):

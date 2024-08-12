@@ -50,7 +50,6 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-    print(args)
 
     if not args.no_scrape:
         print("Scraping Instagram followers...")
