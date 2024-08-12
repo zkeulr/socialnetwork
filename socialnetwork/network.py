@@ -27,7 +27,6 @@ def network(seed=0, k=100):
         for node in component:
             node_colors[node] = cluster_colors[i % len(cluster_colors)]
 
-
     pos = {}
     offset = np.array([0.0, 0.0])
     grid_size = int(np.ceil(np.sqrt(len(connected_components))))
@@ -36,19 +35,22 @@ def network(seed=0, k=100):
     for idx, component in enumerate(connected_components):
         subgraph = G.subgraph(component)
         sub_pos = nx.spring_layout(subgraph, k=k, iterations=10000, seed=seed)
-        
+
         min_x = min(pos[0] for pos in sub_pos.values())
         min_y = min(pos[1] for pos in sub_pos.values())
         max_x = max(pos[0] for pos in sub_pos.values())
         max_y = max(pos[1] for pos in sub_pos.values())
-        
+
         row = idx // grid_size
         col = idx % grid_size
-        offset = np.array([col * (max_x - min_x + spacing), row * (max_y - min_y + spacing)], dtype=np.float64)
-        
+        offset = np.array(
+            [col * (max_x - min_x + spacing), row * (max_y - min_y + spacing)],
+            dtype=np.float64,
+        )
+
         for node in sub_pos:
             sub_pos[node] += offset
-        
+
         pos.update(sub_pos)
 
     edge_x = []

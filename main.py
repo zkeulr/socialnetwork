@@ -2,6 +2,7 @@ from socialnetwork import collect, network, analyze, utils
 import argparse
 from dotenv import load_dotenv
 import os
+from random import randint
 
 if __name__ == "__main__":
 
@@ -16,7 +17,7 @@ if __name__ == "__main__":
     no_analyze = utils.convert_bool(str(os.getenv("NO_ANALYZE")))
 
     if not seed:
-        seed = 10
+        seed = randint(0, 1000)
     if not k:
         k = 10
 
