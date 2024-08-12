@@ -9,7 +9,6 @@ python main.py --username USERNAME --password PASSWORD --seed SEED
 Generates a dynamic analysis of Instagram connections.
 
 ![Network](output/network.png)
-![Clusters](output/cluster.png)
 
 To interact with your network, open [```output/network.html```](output/network.html)
 and [```output/cluster.html```](output/cluster.html) in your broswer.
@@ -22,9 +21,18 @@ and [```output/cluster.html```](output/cluster.html) in your broswer.
 - [pandas](https://github.com/pandas-dev/pandas)
 - [plotly](https://github.com/plotly/plotly.py)
 - [python-dotenv](https://github.com/theskumar/python-dotenv)
+- [scipy](https://github.com/scipy/scipy)
+- [numpy](https://github.com/numpy/numpy)
+
 
 ```console
-pip install instaloader kaleido networkx pandas plotly python-dotenv 
+pip install instaloader kaleido networkx pandas plotly python-dotenv scipy numpy
+```
+
+or
+
+```console
+pip install -r requirements.txt
 ```
 
 ## Advanced Usage

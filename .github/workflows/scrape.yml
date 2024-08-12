@@ -24,8 +24,8 @@ jobs:
       - name: Scrape followers
         id: scrape
         run: |
-          python main.py --no-visualize --no-analyze
-
+          python main.py --no-visualize --no-analyze --username ${{ secrets.USERNAME }} --password ${{ secrets.PASSWORD }}
+          
       - name: Commit and push figures
         id: commit
         run: |

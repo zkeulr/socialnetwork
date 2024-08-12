@@ -4,3 +4,5 @@ pandas
 plotly
 python-dotenv
 kaleido
+scipy
+numpy
