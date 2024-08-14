@@ -1,5 +1,6 @@
 import instaloader
 import time
+from random import uniform
 
 try:
     from . import utils
@@ -8,7 +9,7 @@ except ImportError:
 
 
 def collect(username, password):
-    L = instaloader.Instaloader()
+    L = instaloader.Instaloader(quiet=True, )
 
     try:
         L.load_session_from_file(
@@ -32,21 +33,22 @@ def collect(username, password):
             if username in analyzed_data.keys():
                 continue
 
-            if i >= 15:
-                now = time.time()
-                sleep_seconds = 5 * 60 * 60
-                future = now + sleep_seconds
-                future_str = time.strftime('%H:%M:%S', time.localtime(future))
-                print(f"Waiting until {future_str} to avoid lockout")
-                time.sleep(sleep_seconds)
-            i += 1
-
             print(f"Analyzing {username}: {i}/{len(followers) - len(analyzed_data)}")
 
             follower = instaloader.Profile.from_username(L.context, username)
             subfollowers = get_followers(follower)
             common_followers = list(set(followers).intersection(set(subfollowers)))
             common[username] = common_followers
+            utils.save_connections(common)
+
+            now = time.time()
+            sleep_seconds = uniform(5, 15) * 60
+            future = now + sleep_seconds
+            future_str = time.strftime("%H:%M:%S", time.localtime(future))
+            print(f"Waiting until {future_str} to avoid lockout")
+            time.sleep(sleep_seconds)
+
+            i += 1
     except KeyboardInterrupt:
         print("Program paused")
         print(f"The last follower added was {username}")

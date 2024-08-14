@@ -74,7 +74,7 @@ def save_connections(dict, data_directory="data/", history_directory="history/")
 
 
 def write_json(file_path, data):
-    with open(file_path, 'w') as file:
+    with open(file_path, "w") as file:
         json.dump(data, file, indent=4)
 
 
@@ -84,7 +84,7 @@ def load_connections(filepath="data/connections.json"):
     if os.path.getsize(filepath) == 0:
         return {}
     try:
-        with open(filepath, 'r') as file:
+        with open(filepath, "r") as file:
             return json.load(file)
     except json.JSONDecodeError:
         return {}

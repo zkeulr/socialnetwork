@@ -39,5 +39,3 @@ jobs:
           git add output/network.html
           git commit -m "Add workflow generated figures"
           git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
