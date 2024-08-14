@@ -1,4 +1,5 @@
 import instaloader
+import time
 
 try:
     from . import utils
@@ -30,8 +31,17 @@ def collect(username, password):
         for username in followers:
             if username in analyzed_data.keys():
                 continue
-            print(f"Analyzing {username}: {i}/{len(followers) - len(analyzed_data)}")
+
+            if i >= 15:
+                now = time.time()
+                sleep_seconds = 5 * 60 * 60
+                future = now + sleep_seconds
+                future_str = time.strftime('%H:%M:%S', time.localtime(future))
+                print(f"Waiting until {future_str} to avoid lockout")
+                time.sleep(sleep_seconds)
             i += 1
+
+            print(f"Analyzing {username}: {i}/{len(followers) - len(analyzed_data)}")
 
             follower = instaloader.Profile.from_username(L.context, username)
             subfollowers = get_followers(follower)

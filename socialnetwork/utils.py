@@ -64,7 +64,7 @@ def convert_bool(string):
 def save_connections(dict, data_directory="data/", history_directory="history/"):
     filepath = os.path.join(data_directory, "connections.json")
     dict.update(load_connections(filepath))
-    
+
     write_json(filepath, dict)
 
     now = datetime.now()
@@ -81,8 +81,13 @@ def write_json(file_path, data):
 def load_connections(filepath="data/connections.json"):
     if not os.path.exists(filepath):
         return {}
-    with open(filepath, 'r') as file:
-        return json.load(file)
+    if os.path.getsize(filepath) == 0:
+        return {}
+    try:
+        with open(filepath, 'r') as file:
+            return json.load(file)
+    except json.JSONDecodeError:
+        return {}
 
 
 def save(fig, filename, output_directory="output/", history_directory="history/"):
