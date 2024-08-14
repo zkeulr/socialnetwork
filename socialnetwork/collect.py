@@ -9,7 +9,9 @@ except ImportError:
 
 
 def collect(username, password):
-    L = instaloader.Instaloader(quiet=True, )
+    L = instaloader.Instaloader(
+        quiet=True,
+    )
 
     try:
         L.load_session_from_file(
@@ -41,12 +43,14 @@ def collect(username, password):
             common[username] = common_followers
             utils.save_connections(common)
 
-            now = time.time()
-            sleep_seconds = uniform(5, 15) * 60
-            future = now + sleep_seconds
-            future_str = time.strftime("%H:%M:%S", time.localtime(future))
-            print(f"Waiting until {future_str} to avoid lockout")
-            time.sleep(sleep_seconds)
+            if i == 10:
+                now = time.time()
+                wait = uniform(5, 15) * 60 * 60
+                future = now + wait
+                future_str = time.strftime("%H:%M:%S", time.localtime(future))
+                print("Halting program to avoid lockout")
+                print(f"Run again after {future_str} to resume")
+                break
 
             i += 1
     except KeyboardInterrupt:
@@ -57,7 +61,7 @@ def collect(username, password):
         print(f"The last follower added was {username}")
     finally:
         utils.save_connections(common)
-        print("Saved")
+        print("Followers saved")
 
 
 def login(L, username, password):
