@@ -10,8 +10,7 @@ Generates a dynamic analysis of Instagram connections.
 
 ![Network](output/network.png)
 
-To interact with your network, open [```output/network.html```](output/network.html)
-and [```output/cluster.html```](output/cluster.html) in your broswer.
+To interact with your network, open [```output/network.html```](output/network.html) in your browser.
 
 ## Dependencies
 
