@@ -43,7 +43,7 @@ def collect(username, password):
             common[username] = common_followers
             utils.save_connections(common)
 
-            if i == 10:
+            if i == 5:
                 now = time.time()
                 wait = uniform(5, 15) * 60 * 60
                 future = now + wait

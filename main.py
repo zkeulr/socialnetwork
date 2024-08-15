@@ -19,7 +19,7 @@ if __name__ == "__main__":
     if not seed:
         seed = randint(0, 1000)
     if not k:
-        k = 10
+        k = 1
 
     parser = argparse.ArgumentParser(description="Analyze Instagram follower network.")
     parser.add_argument(
