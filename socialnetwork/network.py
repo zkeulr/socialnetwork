@@ -101,7 +101,6 @@ def network(seed=0, k=100):
                 thickness=15,
                 title="Node Connections",
                 xanchor="left",
-                titleside="right",
             ),
         ),
         textfont=dict(size=text_size),
@@ -111,7 +110,6 @@ def network(seed=0, k=100):
         data=[edge_trace, node_trace],
         layout=go.Layout(
             title="Social Network",
-            titlefont_size=32,
             showlegend=False,
             hovermode="closest",
             margin=dict(b=40, l=40, r=40, t=80),
